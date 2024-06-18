@@ -62,6 +62,9 @@ load_dotenv()  # TODO: make common example prep function
 
 import numpy as np
 
+## Added for .tiff format conversion
+from PIL import Image
+
 from earth2studio.data import GFS
 from earth2studio.io import ZarrBackend
 from earth2studio.models.px import FCN
@@ -174,4 +177,15 @@ for variable, cmap in zip(["t2m", "tcwv"], ["coolwarm", "Blues"]):
         cmap,
     )
 
-    plt.savefig(f"outputs/02_{forecast}_{variable}_{step}_ensemble.jpg")
+    ## Changed to match .tiff files
+    #plt.savefig(f"outputs/02_{forecast}_{variable}_{step}_ensemble.jpg")
+    
+    jpeg_file_path = f"outputs/02_{forecast}_{variable}_{step}_ensemble.jpg"
+    tiff_file_path = f"outputs/02_{forecast}_{variable}_{step}_ensemble.tiff"
+
+    plt.savefig(jpeg_file_path)
+    
+
+    ## Open the PNG image and save it as TIFF
+    image = Image.open(jpeg_file_path)
+    image.save(tiff_file_path, format='TIFF')
