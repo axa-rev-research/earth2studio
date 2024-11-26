@@ -20,10 +20,8 @@ import numpy as np
 import pytest
 import torch
 
-# from earth2studio.utils.coords import map_coords
-from coords import map_coords
-
 from earth2studio.utils import handshake_dim
+from earth2studio.utils.coords import map_coords
 
 
 @pytest.mark.parametrize(
